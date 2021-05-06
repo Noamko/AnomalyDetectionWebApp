@@ -1,0 +1,17 @@
+.tabButton {
+  background-color: green;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  width: 50%;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
