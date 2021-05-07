@@ -41,6 +41,7 @@ body {
 }
 
 .dropFileArea {
+  position: relative;
   background-color: dimgrey;
   float: right;
   width: 25%;

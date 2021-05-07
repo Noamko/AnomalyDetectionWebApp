@@ -51,7 +51,7 @@
           </table>
         </div>
         <div class="dropFileArea">
-          <div>
+          <div class="buttonSection tab">
             <button
               id="trainTab"
               class="tabButton left"
@@ -67,11 +67,22 @@
               Detect
             </button>
           </div>
-          <div></div>
+          <div id="train_div">
+            <label>Please drag a csv file</label>
+          </div>
+          <div id="detect_div">
+            <label>Please drag a csv file to detect</label>
+          </div>
+          <div id="drop-area" class="drop_area">
+            <div>
+              <img src="images/add-file.png" style="object-fit: scale-down" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <script src="js/model_chart.js"></script>
     <script src="js/model_search.js"></script>
+    <script src="js/drag_drop.js"></script>
   </body>
 </html>
