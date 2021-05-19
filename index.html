@@ -51,32 +51,20 @@
           </table>
         </div>
         <div class="dropFileArea">
-          <div class="buttonSection tab">
-            <button
-              id="trainTab"
-              class="tabButton left"
-              onclick="trainTabClick()"
-            >
-              Train
-            </button>
-            <button
-              id="detectTab"
-              class="tabButton right"
-              onclick="detectTabClick()"
-            >
-              Detect
-            </button>
-          </div>
           <div id="train_div">
             <label>Please drag a csv file</label>
           </div>
-          <div id="detect_div">
-            <label>Please drag a csv file to detect</label>
-          </div>
           <div id="drop-area" class="drop_area">
-            <div>
-              <img src="images/add-file.png" style="object-fit: scale-down" />
-            </div>
+            <form class="my-form">
+              <input
+                type="file"
+                id="fileElem"
+                multiple
+                accept="csv/*"
+                onchange="handleFiles(this.files)"
+              />
+              <label class="button" for="fileElem">Select some files</label>
+            </form>
           </div>
         </div>
       </div>

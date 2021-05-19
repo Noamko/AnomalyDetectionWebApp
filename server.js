@@ -4,4 +4,13 @@ app.use(Express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
-app.listen(5000, () =>  console.log("listening on port 5000"));
+
+// POST method route
+app.post('/', function (req, res) {
+  res.send('POST request to the homepage')
+})
+
+
+
+
+app.listen(8080, () =>  console.log("listening on port 8080"));

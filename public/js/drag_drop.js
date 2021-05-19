@@ -19,7 +19,6 @@ function detectTabClick() {
 	detect_Tab.className = "tabButton right active";
 }
 
-
 let dropArea = document.getElementById('drop-area');
 
 dropArea.addEventListener('dragenter', handlerFunction, false);
