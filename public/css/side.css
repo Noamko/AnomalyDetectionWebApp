@@ -1,0 +1,25 @@
+.side-upload-div {
+  height: 50%;
+  background-color: dimgrey;
+}
+
+.seperator {
+  background-color: black;
+  height: 5px;
+  width: 100%;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.upload_button {
+  display: inline-block;
+}
+.upload_button input[type="file"] {
+  display: none;
+}
