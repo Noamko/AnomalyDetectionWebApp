@@ -37,7 +37,14 @@ async function detectAnomalys() {
       method: "POST",
     });
     let result = await r.json();
-    console.log(result);
+    ts = [];
+    for (var idx in result) {
+      let timestep = result[idx]["Time Step "];
+      let cf = result[idx]["Coralated Fetures "];
+      addToTable(cf, timestep);
+      ts.push(timestep);
+    }
+    updateData(["line", ts, "Anoamlies", [1, 2, 4, 5]]);
   } catch (e) {
     console.log(e.message);
   }

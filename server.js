@@ -1,10 +1,12 @@
-const Express = require("express");
 const fileUpload = require("express-fileupload");
-const app = Express();
+const express = require("express");
+const fs = require("fs");
+const app = express();
 
-app.use(Express.static(__dirname + "/public"));
-app.use(Express.static(__dirname + "/view"));
-app.use(Express.static(__dirname + "/model"));
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/view"));
+app.use(express.static(__dirname + "/controller"));
+app.use(express.static(__dirname + "/model"));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -43,6 +45,8 @@ app.post("/uploadAnomaly", function (req, res) {
 
 app.post("/detect", function (req, res) {
   //detect anomalys
-  res.send(JSON.stringify("Detection complete."));
+  let rawdata = fs.readFileSync(__dirname + "/test.json");
+  let jdata = JSON.parse(rawdata);
+  res.send(JSON.stringify(jdata));
 });
 app.listen(8080, () => console.log("listening on port 8080"));

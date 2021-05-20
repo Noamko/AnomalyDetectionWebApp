@@ -18,12 +18,23 @@
           <div class="side-upload-div">
             <input type="file" onchange="uploadTrainingFile(this)" />
             <input type="file" onchange="uploadAnoamlyFile(this)" />
-			<button onclick="detectAnomalys()" >Detect!</button>
+            <button onclick="detectAnomalys()">Detect!</button>
+          </div>
         </div>
       </div>
-      <div class="bottomDiv"></div>
+      <div class="bottomDiv scroll_table">
+        <div>
+          <table id="anom_table">
+            <tr>
+              <th>Features</th>
+              <th>Time Step</th>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <script src="js/model_chart.js"></script>
+    <script src="model_chart.js"></script>
     <script src="model.js"></script>
+    <script src="table_controller.js"></script>
   </body>
 </html>
