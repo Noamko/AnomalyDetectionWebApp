@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Anoamly Detector Web App</title>
+    <link rel="stylesheet" href="css/page_sections.css" />
+    <link rel="stylesheet" href="css/chart.css" />
+    <link rel="stylesheet" href="css/info_table.css" />
+    <link rel="stylesheet" href="css/side.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="mainDiv">
+      <div class="middleDiv">
+        <div class="chartArea">
+          <canvas id="modelChart" class="chart-container"></canvas>
+        </div>
+        <div class="side-div">
+          <div class="side-upload-div">
+            <input type="file" onchange="uploadTrainingFile(this)" />
+            <input type="file" onchange="uploadAnoamlyFile(this)" />
+			<button onclick="detectAnomalys()" >Detect!</button>
+        </div>
+      </div>
+      <div class="bottomDiv"></div>
+    </div>
+    <script src="js/model_chart.js"></script>
+    <script src="model.js"></script>
+  </body>
+</html>
