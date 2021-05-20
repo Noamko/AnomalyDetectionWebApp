@@ -31,7 +31,6 @@ async function uploadAnoamlyFile(x) {
 }
 
 async function detectAnomalys() {
-  console.log("detecting ");
   try {
     let r = await fetch("/detect", {
       method: "POST",

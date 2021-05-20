@@ -1,3 +1,4 @@
+const addon = require("./build/Release/AnomalyModule");
 const fileUpload = require("express-fileupload");
 const express = require("express");
 const fs = require("fs");
@@ -44,9 +45,30 @@ app.post("/uploadAnomaly", function (req, res) {
 });
 
 app.post("/detect", function (req, res) {
+  console.log("execute 'linearDetect' funct	ion");
+  const vecReport = addon.linearDetect(
+    __dirname + "/tmp/train.csv",
+    __dirname + "/tmp/anomaly.csv"
+  );
+
+  const temp = createAnoamlyReport(vecReport);
+
   //detect anomalys
-  let rawdata = fs.readFileSync(__dirname + "/test.json");
+  let rawdata = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
   let jdata = JSON.parse(rawdata);
   res.send(JSON.stringify(jdata));
 });
+
+async function createAnoamlyReport(vecReport) {
+  console.log("Creating json file 'AnomalyReport.json'");
+  var vecReportString = JSON.stringify(vecReport, null, 2);
+  fs.writeFile(
+    __dirname + "/tmp/AnomalyReport.json",
+    vecReportString,
+    (err, result) => {
+      if (err) console.log("error", err);
+      else console.log("json file created!");
+    }
+  );
+}
 app.listen(8080, () => console.log("listening on port 8080"));
