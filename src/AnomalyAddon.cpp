@@ -14,10 +14,14 @@ Napi::Array simpleDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-
+        string delimiter = "<->";
+        int pos = report.description.find(delimiter);
+        string feture1 = report.description.substr(0,pos);
+        string feture2 = report.description.substr(pos + delimiter.length(),report.description.length());
         Napi::Object jsData = Napi::Object::New(env);
-        jsData.Set("Time Step ",report.timeStep);
-        jsData.Set("Coralated Fetures ",report.description);
+        jsData.Set("Time_Step",report.timeStep);
+        jsData.Set("Coralated_Feture_1",feture1);
+        jsData.Set("Coralated_Feture_2",feture2);
         result_list.Set(counter, jsData);
         counter++;
     }
