@@ -31,8 +31,12 @@ async function uploadAnoamlyFile(x) {
 }
 
 async function detectAnomalys() {
+  const btn = document.getElementById("upload_button");
+  btn.innerHTML = "Detecting Please Wait";
+  const algorithem_selector = document.getElementById("alg_select");
+  console.log(algorithem_selector.value);
   try {
-    let r = await fetch("/detect", {
+    let r = await fetch("/" + algorithem_selector.value, {
       method: "POST",
     });
     let result = await r.json();
@@ -44,6 +48,7 @@ async function detectAnomalys() {
       ts.push(timestep);
     }
     updateData(["line", ts, "Anoamlies", [1, 2, 4, 5]]);
+    btn.innerHTML = "Done";
   } catch (e) {
     console.log(e.message);
   }

@@ -44,30 +44,63 @@ app.post("/uploadAnomaly", function (req, res) {
   res.end();
 });
 
-app.post("/detect", function (req, res) {
+function linearDetect() {
   console.log("execute 'linearDetect' funct	ion");
   const vecReport = addon.linearDetect(
     __dirname + "/tmp/train.csv",
     __dirname + "/tmp/anomaly.csv"
   );
-
-  const temp = createAnoamlyReport(vecReport);
-
+  return vecReport;
+}
+app.post("/detectLinear", function (req, res) {
   //detect anomalys
-  let rawdata = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
-  let jdata = JSON.parse(rawdata);
-  res.send(JSON.stringify(jdata));
-});
-
-async function createAnoamlyReport(vecReport) {
-  console.log("Creating json file 'AnomalyReport.json'");
-  var vecReportString = JSON.stringify(vecReport, null, 2);
+  console.log("Detecting using linear regression");
+  var vecReportString = JSON.stringify(linearDetect(), null, 2);
   fs.writeFile(
     __dirname + "/tmp/AnomalyReport.json",
     vecReportString,
     (err, result) => {
       if (err) console.log("error", err);
-      else console.log("json file created!");
+      else {
+        let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
+        let jdata = JSON.parse(ret);
+        res.send(JSON.stringify(jdata));
+      }
+    }
+  );
+});
+
+app.post("/detectMinCircle", function (req, res) {
+  //detect anomalys
+  console.log("Detecting using Mininal Circle");
+  var vecReportString = JSON.stringify(linearDetect(), null, 2); //Change this to min circle Detect ask ilan
+  fs.writeFile(
+    __dirname + "/tmp/AnomalyReport.json",
+    vecReportString,
+    (err, result) => {
+      if (err) console.log("error", err);
+      else {
+        let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
+        let jdata = JSON.parse(ret);
+        res.send(JSON.stringify(jdata));
+      }
+    }
+  );
+});
+
+async function createAnoamlyReport(vecReport) {
+  console.log("Creating json file 'AnomalyReport.json'");
+  var vecReportString = JSON.stringify(vecReport, null, 2);
+  const t = await fs.writeFile(
+    __dirname + "/tmp/AnomalyReport.json",
+    vecReportString,
+    (err, result) => {
+      if (err) console.log("error", err);
+      else {
+        console.log("json file created!");
+        let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
+        return ret;
+      }
     }
   );
 }

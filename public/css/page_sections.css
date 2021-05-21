@@ -1,12 +1,23 @@
 html,
 body {
+  background: rgba(31, 32, 37);
   height: 100%;
   padding: 0;
   margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .mainDiv {
-  height: inherit;
+  height: 95%;
+  width: 95%;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  background: rgb(70, 70, 70);
+  border-radius: 25px;
 }
 
 .middleDiv {
@@ -15,19 +26,25 @@ body {
 }
 
 .chartArea {
-  float: left;
-  width: 75%;
+  background: rgba(221, 222, 229);
+  border-radius: 25px;
+  margin: 5px;
+  float: right;
+  width: 74%;
   height: 100%;
 }
 
 .side-div {
-  float: right;
+  background: rgba(221, 222, 229);
+  border-radius: 25px;
+  float: left;
   width: 25%;
   height: 100%;
 }
 
 .bottomDiv {
-  background-color: chocolate;
+  background: rgba(221, 222, 229);
+  border-radius: 25px;
   width: 100%;
   height: 40%;
 }
