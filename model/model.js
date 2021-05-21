@@ -34,7 +34,9 @@ async function detectAnomalys() {
   const btn = document.getElementById("upload_button");
   btn.innerHTML = "Detecting Please Wait";
   const algorithem_selector = document.getElementById("alg_select");
-  console.log(algorithem_selector.value);
+
+  const loading_indicator = document.getElementById("loading_ind");
+  loading_indicator.style.display = "inline-block";
   try {
     let r = await fetch("/" + algorithem_selector.value, {
       method: "POST",
@@ -49,6 +51,7 @@ async function detectAnomalys() {
     }
     updateData(["line", ts, "Anoamlies", [1, 2, 4, 5]]);
     btn.innerHTML = "Done";
+    loading_indicator.style.display = "none";
   } catch (e) {
     console.log(e.message);
   }
