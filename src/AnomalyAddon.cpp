@@ -38,10 +38,12 @@ Napi::Array hybridDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-
+        string firstFeature = report.description.substr(0, report.description.find("<->"));
+        string secondFeature = report.description.substr(report.description.find("<->")+3,report.description.length());
         Napi::Object jsData = Napi::Object::New(env);
-        jsData.Set("Time Step ",report.timeStep);
-        jsData.Set("Coralated Fetures ",report.description);
+        jsData.Set("Time Step",report.timeStep);
+        jsData.Set("Coralated_Feture_1",firstFeature);
+        jsData.Set("Coralated_Feture_2",secondFeature);
         result_list.Set(counter, jsData);
         counter++;
     }

@@ -17,7 +17,7 @@ module.exports.csvToMap = function csvToMap(pathFile){
 function parseCSVToMap(str, delimiter = ",") {
     var map = new Map()
     const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
-    console.log(headers.length);
+    headers[headers.length-1] = headers[headers.length-1].slice(0, headers[headers.length-1].indexOf("\r"));
     var size = Object.keys(headers).length;
     for (let i =0; i<size; i++) {
         map.set(headers[i], [])
@@ -31,6 +31,7 @@ function parseCSVToMap(str, delimiter = ",") {
     }    
     for (var j=0;j<rows.length;j++) {
         var row = rows[j].slice(0,rows[j].length).split(delimiter);
+        row[row.length-1] = row[row.length-1].slice(0, row[row.length-1].indexOf("\r"));
         for (var i=0; i<temp.length;i++) {
             temp[i].push(row[i]); 
         }
