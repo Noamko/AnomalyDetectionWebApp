@@ -14,7 +14,7 @@ Napi::Array simpleDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-        string delimiter = "<->";
+        string delimiter = " <---> ";
         int pos = report.description.find(delimiter);
         string feture1 = report.description.substr(0,pos);
         string feture2 = report.description.substr(pos + delimiter.length(),report.description.length());
@@ -38,8 +38,9 @@ Napi::Array hybridDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-        string firstFeature = report.description.substr(0, report.description.find("<->"));
-        string secondFeature = report.description.substr(report.description.find("<->")+3,report.description.length());
+        string firstFeature = report.description.substr(0, report.description.find(" <---> "));
+        if (counter == 0) std::cout<<firstFeature<<std::endl;
+        string secondFeature = report.description.substr(report.description.find(" <---> ")+7,report.description.length());
         Napi::Object jsData = Napi::Object::New(env);
         jsData.Set("Time Step",report.timeStep);
         jsData.Set("Coralated_Feture_1",firstFeature);
