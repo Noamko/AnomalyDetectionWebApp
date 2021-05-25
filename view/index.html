@@ -16,21 +16,46 @@
         </div>
         <div class="side-div">
           <div class="side-upload-div">
+            <br />
+            <br />
+            <span style="font-size: 29">Anoamly Detector Web App</span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="seperator"></div>
+            <span>Please upload training file:</span>
+            <br />
             <input type="file" onchange="uploadTrainingFile(this)" />
+            <br />
+            <div class="seperator"></div>
+            <span>Please upload test file:</span>
+            <br />
             <input type="file" onchange="uploadAnoamlyFile(this)" />
-            <button onclick="detectAnomalys()">Detect!</button>
+            <br />
+            <div class="seperator"></div>
+            <span>Detection algorithm:</span>
+            <select id="alg_select">
+              <option value="detectLinear">Linear Regrassion</option>
+              <option value="detectMinCircle">Minimal Circle</option>
+            </select>
+            <br />
+            <br />
+            <button id="upload_button" onclick="detectAnomalys()">
+              Detect!
+            </button>
+            <div id="loading_ind" class="loader"></div>
+            <div class="seperator"></div>
           </div>
         </div>
       </div>
       <div class="bottomDiv scroll_table">
-        <div>
-          <table id="anom_table">
-            <tr>
-              <th>Features</th>
-              <th>Time Step</th>
-            </tr>
-          </table>
-        </div>
+        <table id="anom_table">
+          <tr>
+            <th>Features</th>
+            <th>Time Step</th>
+          </tr>
+        </table>
       </div>
     </div>
     <script src="model_chart.js"></script>

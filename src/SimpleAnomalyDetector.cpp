@@ -70,7 +70,7 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts) {
 		for(int i=0; i< arrSize; i++){
 			float devNumber = devCal(points[i], feature); /*dev(*point,feature.lin_reg);*/
 			if(feature.threshold < devNumber){
-				AnomalyReport report(feature1+"<->"+feature2,timeStemp);
+				AnomalyReport report(feature1+" <---> "+feature2,timeStemp);
 				ar.push_back(report);				
 			}			
 			timeStemp++;
