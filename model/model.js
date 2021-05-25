@@ -44,8 +44,8 @@ async function detectAnomalys() {
     let result = await r.json();
     ts = [];
     for (var idx in result) {
-      let timestep = result[idx]["Time Step "];
-      let cf = result[idx]["Coralated Fetures "];
+      let timestep = result[idx]["Time_Step"];
+      let cf = result[idx]["Coralated_Feture_1"] +" <-> "+ result[idx]["Coralated_Feture_2"];
       addToTable(cf, timestep);
       ts.push(timestep);
     }
