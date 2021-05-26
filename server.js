@@ -52,6 +52,15 @@ function linearDetect() {
   );
   return vecReport;
 }
+
+function circleDetect() {
+  console.log("execute 'circleDetect' funct	ion");
+  const vecReport = addon.circleDetect(
+    __dirname + "/tmp/train.csv",
+    __dirname + "/tmp/anomaly.csv"
+  );
+  return vecReport;
+}
 app.post("/detectLinear", function (req, res) {
   //detect anomalys
   console.log("Detecting using linear regression");
@@ -72,8 +81,9 @@ app.post("/detectLinear", function (req, res) {
 
 app.post("/detectMinCircle", function (req, res) {
   //detect anomalys
-  console.log("Detecting using Mininal Circle");
-  var vecReportString = JSON.stringify(linearDetect(), null, 2); //Change this to min circle Detect ask ilan
+  console.log("Detecting using Minimal Circle");
+  var vecReportString = JSON.stringify(circleDetect(), null, 2); //Change this to min circle Detect ask ilan
+  
   fs.writeFile(
     __dirname + "/tmp/AnomalyReport.json",
     vecReportString,

@@ -2,6 +2,10 @@
 #include <string>
 #include "AnomalyAlg.h"
 
+#define CORR_FEATURE1 "Coralated Feture_1"
+#define CORR_FEATURE2 "Coralated Feture_2"
+#define TIME_STEP "Time Step"
+#define SEPERATOR " <---> "
 // native C++ function that is assigned to 'greetHello' property on 'exports' objexct
 Napi::Array simpleDetect(const Napi::CallbackInfo& info) {
     
@@ -14,14 +18,14 @@ Napi::Array simpleDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-        string delimiter = " <---> ";
+        string delimiter = SEPERATOR;
         int pos = report.description.find(delimiter);
         string feture1 = report.description.substr(0,pos);
         string feture2 = report.description.substr(pos + delimiter.length(),report.description.length());
         Napi::Object jsData = Napi::Object::New(env);
-        jsData.Set("Time_Step",report.timeStep);
-        jsData.Set("Coralated_Feture_1",feture1);
-        jsData.Set("Coralated_Feture_2",feture2);
+        jsData.Set(TIME_STEP,report.timeStep);
+        jsData.Set(CORR_FEATURE1,feture1);
+        jsData.Set(CORR_FEATURE2,feture2);
         result_list.Set(counter, jsData);
         counter++;
     }
@@ -38,13 +42,13 @@ Napi::Array hybridDetect(const Napi::CallbackInfo& info) {
     Napi::Array result_list = Napi::Array::New(env);
     int counter = 0 ;
     for(AnomalyReport report : reports){
-        string firstFeature = report.description.substr(0, report.description.find(" <---> "));
+        string firstFeature = report.description.substr(0, report.description.find(SEPERATOR));
         if (counter == 0) std::cout<<firstFeature<<std::endl;
-        string secondFeature = report.description.substr(report.description.find(" <---> ")+7,report.description.length());
+        string secondFeature = report.description.substr(report.description.find(SEPERATOR)+7,report.description.length());
         Napi::Object jsData = Napi::Object::New(env);
-        jsData.Set("Time Step",report.timeStep);
-        jsData.Set("Coralated_Feture_1",firstFeature);
-        jsData.Set("Coralated_Feture_2",secondFeature);
+        jsData.Set(TIME_STEP,report.timeStep);
+        jsData.Set(CORR_FEATURE1,firstFeature);
+        jsData.Set(CORR_FEATURE2,secondFeature);
         result_list.Set(counter, jsData);
         counter++;
     }
