@@ -32,7 +32,8 @@
 #upload_button:c {
   background-color: #747681; /* Green */
 }
-#upload_button {
+#upload_button,
+#back_button {
   cursor: pointer;
   display: none;
   background-color: #413872; /* Green */
@@ -62,4 +63,11 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+#corrolated_feature_select {
+  max-width: 80%;
+}
+.hide {
+  display: none;
 }

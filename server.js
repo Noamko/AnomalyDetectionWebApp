@@ -2,13 +2,13 @@ const addon = require("./build/Release/AnomalyModule");
 const fileUpload = require("express-fileupload");
 const express = require("express");
 const fs = require("fs");
+const csvParseToMap = require("./utils");
 const app = express();
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/view"));
 app.use(express.static(__dirname + "/controller"));
 app.use(express.static(__dirname + "/model"));
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
@@ -61,6 +61,7 @@ function circleDetect() {
   );
   return vecReport;
 }
+
 app.post("/detectLinear", function (req, res) {
   //detect anomalys
   console.log("Detecting using linear regression");
@@ -74,16 +75,17 @@ app.post("/detectLinear", function (req, res) {
         let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
         let jdata = JSON.parse(ret);
         res.send(JSON.stringify(jdata));
+        res.end();
       }
     }
   );
 });
 
-app.post("/detectMinCircle", function (req, res) {
+app.post("/detectHybrid", function (req, res) {
   //detect anomalys
-  console.log("Detecting using Minimal Circle");
+  console.log("Detecting using Hybrid algorithm");
   var vecReportString = JSON.stringify(circleDetect(), null, 2); //Change this to min circle Detect ask ilan
-  
+
   fs.writeFile(
     __dirname + "/tmp/AnomalyReport.json",
     vecReportString,
@@ -93,25 +95,17 @@ app.post("/detectMinCircle", function (req, res) {
         let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
         let jdata = JSON.parse(ret);
         res.send(JSON.stringify(jdata));
+        res.end();
       }
     }
   );
 });
 
-async function createAnoamlyReport(vecReport) {
-  console.log("Creating json file 'AnomalyReport.json'");
-  var vecReportString = JSON.stringify(vecReport, null, 2);
-  const t = await fs.writeFile(
-    __dirname + "/tmp/AnomalyReport.json",
-    vecReportString,
-    (err, result) => {
-      if (err) console.log("error", err);
-      else {
-        console.log("json file created!");
-        let ret = fs.readFileSync(__dirname + "/tmp/AnomalyReport.json");
-        return ret;
-      }
-    }
-  );
-}
+app.post("/csvdata", (req, res) => {
+  map = csvParseToMap.csvToMap(__dirname + "/tmp/anomaly.csv");
+  const data = req.body.header;
+  res.send(JSON.stringify(map.get(data)));
+  res.end();
+});
+
 app.listen(8080, () => console.log("listening on port 8080"));

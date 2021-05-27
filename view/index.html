@@ -12,10 +12,28 @@
     <div class="mainDiv">
       <div class="middleDiv">
         <div class="chartArea">
-          <canvas id="modelChart" class="chart-container"></canvas>
+          <canvas id="chart" class="chart-container"></canvas>
         </div>
         <div class="side-div">
-          <div class="side-upload-div">
+          <div id="user_ui" class="hide">
+            <br />
+            <br />
+            <span style="font-size: 29">Anoamly Detector Web App</span>
+            <br />
+            <br />
+            <div class="seperator"></div>
+            <br />
+            <select
+              id="corrolated_feature_select"
+              class="custom-select"
+              onchange="corraltionSelectionChanged(this)"
+            ></select>
+            <div class="seperator"></div>
+            <br />
+            <br />
+            <button id="back_button" onclick="backToUpload()">Back</button>
+          </div>
+          <div id="upload_ui" class="side-upload-div">
             <br />
             <br />
             <span style="font-size: 29">Anoamly Detector Web App</span>
@@ -35,7 +53,7 @@
             <span>Detection algorithm:</span>
             <select id="alg_select">
               <option value="detectLinear">Linear Regrassion</option>
-              <option value="detectMinCircle">Minimal Circle</option>
+              <option value="detectHybrid">Hybrid</option>
             </select>
             <br />
             <br />
@@ -56,8 +74,8 @@
         </table>
       </div>
     </div>
-    <script src="model_chart.js"></script>
-    <script src="model.js"></script>
-    <script src="table_controller.js"></script>
+    <script src="ChartController.js"></script>
+    <script src="Model.js"></script>
+    <script src="TableController.js"></script>
   </body>
 </html>
