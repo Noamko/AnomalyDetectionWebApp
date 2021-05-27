@@ -50,7 +50,6 @@ async function detectAnomalys() {
   }
 }
 async function corraltionSelectionChanged(x) {
-  console.log(x);
   let features = x.value.split(" <---> ");
   let feature1_data = await getdata(features[0]);
   let feature2_data = await getdata(features[1]);
@@ -121,6 +120,8 @@ async function updateView(detection_result) {
     corrolated_features_selector.appendChild(option);
   }
 
+  await sleep(1000);
+  corrolated_features_selector.onchange();
   uploadUI.className = "hide";
   userUI.className = "side-upload-div";
 }
@@ -150,15 +151,14 @@ function backToUpload() {
   const loading_indicator = document.getElementById("loading_ind");
   loading_indicator.style.display = "none";
 
-  removeOptions(document.getElementById("corrolated_feature_select"));
+  let lst = document.getElementById("corrolated_feature_select");
+  corrolated_features_list = [];
+  lst.innerHTML = "";
+  console.log("HI");
   uploadUI.className = "side-upload-div";
   userUI.className = "hide";
 }
 
-function removeOptions(selectElement) {
-  let i,
-    L = selectElement.options.length - 1;
-  for (i = L; i >= 0; i--) {
-    selectElement.remove(i);
-  }
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
