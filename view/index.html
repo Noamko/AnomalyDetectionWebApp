@@ -23,12 +23,13 @@
             <br />
             <div class="seperator"></div>
             <br />
+            <span>Correlated features:</span>
+            <br />
             <select
               id="corrolated_feature_select"
               class="custom-select"
               onchange="corraltionSelectionChanged(this)"
             ></select>
-            <div class="seperator"></div>
             <br />
             <br />
             <button id="back_button" onclick="backToUpload()">Back</button>
@@ -59,6 +60,9 @@
             <br />
             <button id="upload_button" onclick="detectAnomalys()">
               Detect!
+            </button>
+            <button id="btu_button" class="button" onclick="backToUser()">
+              >>
             </button>
             <div id="loading_ind" class="loader"></div>
             <div class="seperator"></div>

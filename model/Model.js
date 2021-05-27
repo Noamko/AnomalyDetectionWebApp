@@ -39,12 +39,20 @@ async function detectAnomalys() {
   btn.disabled = true;
   const loading_indicator = document.getElementById("loading_ind");
   loading_indicator.style.display = "inline-block";
+
+  document.getElementById("btu_button").style.display = "none";
+
+  let lst = document.getElementById("corrolated_feature_select");
+  corrolated_features_list = [];
+  lst.innerHTML = "";
+
   try {
     let r = await fetch("/" + algorithem_selector.value, {
       method: "POST",
     });
     let result = await r.json();
     updateView(result);
+    document.getElementById("btu_button").style.display = "inline-block";
   } catch (e) {
     console.log(e.message);
   }
@@ -151,12 +159,15 @@ function backToUpload() {
   const loading_indicator = document.getElementById("loading_ind");
   loading_indicator.style.display = "none";
 
-  let lst = document.getElementById("corrolated_feature_select");
-  corrolated_features_list = [];
-  lst.innerHTML = "";
-  console.log("HI");
   uploadUI.className = "side-upload-div";
   userUI.className = "hide";
+}
+
+function backToUser() {
+  const uploadUI = document.getElementById("upload_ui");
+  const userUI = document.getElementById("user_ui");
+  uploadUI.className = "hide";
+  userUI.className = "side-upload-div";
 }
 
 function sleep(ms) {

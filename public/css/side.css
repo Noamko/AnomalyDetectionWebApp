@@ -32,6 +32,7 @@
 #upload_button:c {
   background-color: #747681; /* Green */
 }
+.button,
 #upload_button,
 #back_button {
   cursor: pointer;
