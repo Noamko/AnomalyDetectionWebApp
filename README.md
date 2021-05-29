@@ -1,4 +1,5 @@
 # Anomaly Detection WebApp
+![UML IMAGE](https://i.ibb.co/vL3NFB4/image.png)
 The project provides an **API** that support the following options:
 - upload training and test (csv files).
 - detect anomalies using on of the 2 detection algorithems (Linear Regression or Hybrid that uses a minimal circle algorithem)
@@ -42,3 +43,11 @@ download lts version of npm and node.js from: https://www.npmjs.com/get-npm
 - npm install node-addon-api
 - node-gyp rebuild
 - node server.js
+
+##### Video
+https://youtu.be/yE7MqifG6I8
+##### UML
+![UML IMAGE](https://i.ibb.co/s32m8VD/image.jpg)
+
+
+
