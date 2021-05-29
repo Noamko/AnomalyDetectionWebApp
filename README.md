@@ -1,7 +1,7 @@
 # Anomaly Detection WebApp
 The project provides an **API** that support the following options:
 - upload training and test (csv files).
-- detect anomlies using on of the 2 detection algorithems (Linear Regression or Hybrid that uses a minimal circle algorithem)
+- detect anomalies using on of the 2 detection algorithems (Linear Regression or Hybrid that uses a minimal circle algorithem)
 - Get data from a given csv header (from a test file).
 
   The detection algorithem implemented using native Addon in the context of the Node.js is a binary file that is compiled from a low-level language like C and C++
@@ -22,15 +22,14 @@ the graph also allows the user to view only one feature by pressing the outher f
 
 ### A hierarchy of folders
 - ANOMALYDETECTIONWEBAPP_MAIN - The main folder.
-- server.js: The servers is in charge of setting the API by post requests that contain:
-
-     
--controller -
--moudle - Use the API that the server implements 
-- node_moudle - 
-- src: A folder of the anomly detection algorithems. 
+- server.js: This is express server that can listen to clients and execute the API commands 
+- controller: Use the API that the server implements. With this API the moudle calculate the
+  anomalies and send them to the view. 
+- node_modules - extern libreries and installitions. 
+- build: This folder contain the detection algorithems (model).
+- src: A folder of the anomaly detection algorithems source files.
 - view: This part present the web page with all the buttons and charts.Its made by html and css.
-
+- binding.gyp: file that help to build the addon.
 
 ### Installition requirements
 download python from: https://www.python.org/downloads/
