@@ -173,3 +173,18 @@ function backToUser() {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+function createChart(config) {
+  return new Chart(document.getElementById("chart"), config);
+}
+
+function addToTable(f, t) {
+  const table = document.getElementById("anom_table");
+  let newRow = document.createElement("tr");
+  let corlated = document.createElement("td");
+  let ts = document.createElement("td");
+  corlated.innerHTML = f;
+  ts.innerHTML = t;
+  newRow.appendChild(corlated);
+  newRow.appendChild(ts);
+  table.appendChild(newRow);
+}
