@@ -1,5 +1,5 @@
 # Anomaly Detection WebApp
-![UML IMAGE](https://i.ibb.co/vL3NFB4/image.png)
+
 The project provides an **API** that support the following options:
 - upload training and test (csv files).
 - detect anomalies using on of the 2 detection algorithems (Linear Regression or Hybrid that uses a minimal circle algorithem)
@@ -20,6 +20,10 @@ In this project we implement the API for GUI web application that support an eas
 - A graph that shows only the time ranges when an anomaly acurred each (each dot on the graph represent an anomaly)
 the graph also allows the user to view only one feature by pressing the outher feature title to hide it and it will focus on the desired feature.
 - A table to view all of the detected anomalies sorted in order.
+
+
+![UML IMAGE](https://i.ibb.co/vL3NFB4/image.png)
+
 
 ### A hierarchy of folders
 - ANOMALYDETECTIONWEBAPP_MAIN - The main folder.
